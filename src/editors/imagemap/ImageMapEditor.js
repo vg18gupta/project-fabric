@@ -887,6 +887,15 @@ class ImageMapEditor extends Component {
 
 					</MediaList>
 				</Tabs.TabPane>
+				<Tabs.TabPane tab="Templates" key="4">
+					<MediaList 
+					canvasRef={this.canvasRef}
+					onEditInMain={onEditInMain}
+					template= "true"
+					tabChangeOnEdit={this.tabChangeOnEdit}
+					>
+					</MediaList>
+				</Tabs.TabPane>
 			</Tabs>
 		</div>
 		return  topTab;

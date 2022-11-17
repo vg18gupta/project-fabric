@@ -8,13 +8,17 @@ class MediaList extends Component {
         activePane: 1
     }
     componentDidMount(){
+        let userId = "userId1";
+        if(this.props.template){
+            userId = "templates"
+        }
         const url = 'https://apis.staging.sharechat.com/self-serve-service/v1/external/selfServe/asset/temp/get'
         fetch(url, {
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userId:'userId1'})
+            body: JSON.stringify({userId: userId})
           }).then((response) => response.json())
           .then((data) => {console.log(data); this.setState({creativeData: data})});
     }
