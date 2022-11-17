@@ -38,7 +38,7 @@ class MediaList extends Component {
                     this.props.tabChangeOnEdit(1);
                     this.props.onEditInMain(item.creativeData[0])
                     }
-                }} type="primary" shape="circle"  size="large"/>
+                }} type="primary"  size="large">Edit</Button>
             <Card style={{ height: 300, margin: 16 }} title={i + "asd"}>
             <Canvas
 							ref={i => {
