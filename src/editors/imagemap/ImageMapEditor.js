@@ -17,6 +17,7 @@ import ImageMapItems from './ImageMapItems';
 import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
 import MediaList from '../MediaList';
+import VideoContent from '../../components/layout/VideoContent';
 
 const propertiesToInclude = [
 	'id',
@@ -88,7 +89,9 @@ class ImageMapEditor extends Component {
 		dataSources: [],
 		editing: false,
 		descriptors: {},
+		videoDescriptors: {},
 		objects: undefined,
+		activeTab: 1,
 	};
 
 	componentDidMount() {
@@ -97,6 +100,16 @@ class ImageMapEditor extends Component {
 			this.setState(
 				{
 					descriptors,
+				},
+				() => {
+					this.showLoading(false);
+				},
+			);
+		});
+		import('./VideoDescriptors.json').then(videoDescriptors => {
+			this.setState(
+				{
+					videoDescriptors,
 				},
 				() => {
 					this.showLoading(false);
@@ -643,6 +656,9 @@ class ImageMapEditor extends Component {
 		return Object.values(this.state.descriptors).reduce((prev, curr) => prev.concat(curr), []);
 	};
 
+	videoTransformList = () => {
+		return Object.values(this.state.videoDescriptors).reduce((prev, curr) => prev.concat(curr), []);
+	}
 	showLoading = loading => {
 		this.setState({
 			loading,
@@ -667,6 +683,7 @@ class ImageMapEditor extends Component {
 			dataSources,
 			editing,
 			descriptors,
+			videoDescriptors,
 			objects,
 		} = this.state;
 		const {
@@ -844,13 +861,93 @@ class ImageMapEditor extends Component {
 				/>
 			</div>
 		);
+
+		const videoContent = (
+			<div className="rde-editor">
+				<ImageMapItems
+					ref={c => {
+						this.itemsRef = c;
+					}}
+					canvasRef={this.canvasRef}
+					descriptors={videoDescriptors}
+				/>
+				<div className="rde-editor-canvas-container">
+					<div className="rde-editor-header-toolbar">
+						<ImageMapHeaderToolbar
+							canvasRef={this.canvasRef}
+							selectedItem={selectedItem}
+							onSelect={onSelect}
+						/>
+					</div>
+					<div
+						ref={c => {
+							this.container = c;
+						}}
+						className="rde-editor-canvas"
+					>
+						<Canvas
+							ref={c => {
+								this.canvasRef = c;
+							}}
+							className="rde-canvas"
+							minZoom={30}
+							maxZoom={500}
+							objectOption={defaultOption}
+							propertiesToInclude={propertiesToInclude}
+							onModified={onModified}
+							onAdd={onAdd}
+							onRemove={onRemove}
+							onSelect={onSelect}
+							onZoom={onZoom}
+							onTooltip={onTooltip}
+							onClick={onClick}
+							onContext={onContext}
+							onTransaction={onTransaction}
+							keyEvent={{
+								transaction: true,
+							}}
+							canvasOption={{
+								selectionColor: 'rgba(8, 151, 156, 0.3)',
+							}}
+						/>
+					</div>
+					<div className="rde-editor-footer-toolbar">
+						<ImageMapFooterToolbar
+							canvasRef={this.canvasRef}
+							preview={preview}
+							onChangePreview={onChangePreview}
+							zoomRatio={zoomRatio}
+						/>
+					</div>
+				</div>
+				<ImageMapConfigurations
+					canvasRef={this.canvasRef}
+					onChange={onChange}
+					selectedItem={selectedItem}
+					onChangeAnimations={onChangeAnimations}
+					onChangeStyles={onChangeStyles}
+					onChangeDataSources={onChangeDataSources}
+					animations={animations}
+					styles={styles}
+					dataSources={dataSources}
+				/>
+				<ImageMapPreview
+					preview={preview}
+					onChangePreview={onChangePreview}
+					onTooltip={onTooltip}
+					onClick={onClick}
+					objects={objects}
+				/>
+			</div>
+		);
+
 		const topTab = <div>
-			<Tabs defaultActiveKey="1">
+			<Tabs defaultActiveKey="1" onChange={(e) => {this.setState({activeTab: e})}}>
 				<Tabs.TabPane tab="Image" key="1">
 					<Content title={title} content={content} loading={loading} className="" />
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Video" key="2">
-				Content of Tab Pane 2
+					<VideoContent title={title} content={videoContent} loading={loading} className="" />
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Media List" key="3">
 					<MediaList></MediaList>
