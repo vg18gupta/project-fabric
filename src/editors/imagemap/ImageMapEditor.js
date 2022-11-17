@@ -18,6 +18,7 @@ import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
 import MediaList from '../MediaList';
 import VideoMapEditor from './videoMapEditor';
+import VideoEditor from '../VideoEditor';
 
 const propertiesToInclude = [
 	'id',
@@ -622,7 +623,7 @@ class ImageMapEditor extends Component {
 			};
 			const url = 'https://apis.staging.sharechat.com/self-serve-service/v1/external/selfServe/asset/temp/create'
 			const response =  fetch(url, {
-				method: 'POST', 
+				method: 'POST',
 				headers: {
 				  'Content-Type': 'application/json'
 				},
@@ -632,11 +633,11 @@ class ImageMapEditor extends Component {
 		onNewCanvas: ()=>{
 			console.log("here in removwe", this.canvasRef.canvas);
 			this.canvasRef.canvas? this.canvasRef.canvas.remove(...this.canvasRef.canvas.getObjects()): {};
-			//TODO add base image 
+			//TODO add base image
 			// const id = uuid();
 			// const item = {option: {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}}
 			// const option = Object.assign({}, {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}, { id });
-			
+
 			// this.canvasRef.handler.add(option);
 		},
 		onEditInMain: (data)=>{
@@ -788,7 +789,7 @@ class ImageMapEditor extends Component {
 			</React.Fragment>
 		);
 		const title = <ImageMapTitle title={titleContent} action={action} />;
-		
+
 		const content = (
 			<div className="rde-editor">
 				<ImageMapItems
@@ -868,7 +869,7 @@ class ImageMapEditor extends Component {
 			</div>
 		);
 		const topTab = <div>
-			<Tabs 
+			<Tabs
 			defaultActiveKey="1"
 			activeKey={this.state.activeTab + ""}
 			onChange ={this.tabChangeOnEdit}
@@ -878,9 +879,10 @@ class ImageMapEditor extends Component {
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Video" key="2">
 							<VideoMapEditor />
+					<VideoEditor></VideoEditor>
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Media List" key="3">
-					<MediaList 
+					<MediaList
 					canvasRef={this.canvasRef}
 					onEditInMain={onEditInMain}
 					tabChangeOnEdit={this.tabChangeOnEdit}
@@ -889,7 +891,7 @@ class ImageMapEditor extends Component {
 					</MediaList>
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Templates" key="4">
-					<MediaList 
+					<MediaList
 					canvasRef={this.canvasRef}
 					onEditInMain={onEditInMain}
 					template= "true"
