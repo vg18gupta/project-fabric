@@ -19,8 +19,8 @@ export default {
 						initialValue: imageLoadType,
 					})(
 						<Radio.Group size="small">
-							<Radio.Button value="file">{i18n.t('imagemap.image.file-upload')}</Radio.Button>
-							<Radio.Button value="src">{i18n.t('imagemap.image.image-url')}</Radio.Button>
+							<Radio.Button value="file">File Upload</Radio.Button>
+							<Radio.Button value="src">Image URL</Radio.Button>
 						</Radio.Group>,
 					)}
 				</Form.Item>

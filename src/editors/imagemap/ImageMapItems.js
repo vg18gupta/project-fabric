@@ -282,7 +282,7 @@ class ImageMapItems extends Component {
 						{collapse ? null : (
 							<Input
 								style={{ margin: '8px' }}
-								placeholder={i18n.t('action.search-list')}
+								placeholder={'Search List'}
 								onChange={this.handlers.onSearchNode}
 								value={textSearch}
 								allowClear

@@ -414,14 +414,14 @@ class ImageMapEditor extends Component {
 								this.canvasRef.handler.duplicate();
 							}}
 						>
-							{i18n.t('action.clone')}
+							clone
 						</Menu.Item>
 						<Menu.Item
 							onClick={() => {
 								this.canvasRef.handler.remove();
 							}}
 						>
-							{i18n.t('action.delete')}
+							Delete
 						</Menu.Item>
 					</Menu>
 				);
@@ -441,14 +441,14 @@ class ImageMapEditor extends Component {
 								this.canvasRef.handler.duplicate();
 							}}
 						>
-							{i18n.t('action.clone')}
+							Clone
 						</Menu.Item>
 						<Menu.Item
 							onClick={() => {
 								this.canvasRef.handler.remove();
 							}}
 						>
-							{i18n.t('action.delete')}
+							Delete
 						</Menu.Item>
 					</Menu>
 				);
@@ -460,14 +460,14 @@ class ImageMapEditor extends Component {
 							this.canvasRef.handler.duplicateById(target.id);
 						}}
 					>
-						{i18n.t('action.clone')}
+						Clone
 					</Menu.Item>
 					<Menu.Item
 						onClick={() => {
 							this.canvasRef.handler.removeById(target.id);
 						}}
 					>
-						{i18n.t('action.delete')}
+						Delete
 					</Menu.Item>
 				</Menu>
 			);
