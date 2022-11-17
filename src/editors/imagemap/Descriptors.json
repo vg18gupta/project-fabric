@@ -112,7 +112,38 @@
 				"height": 80,
 				"name": "New shape"
 			}
+		},
+		{
+			"name": "Star",
+			"description": "",
+			"type": "image",
+			"icon": {
+				"prefix": "fas",
+				"name": "star"
+			},
+			"option": {
+				"type": "star",
+				"width": 80,
+				"height": 80,
+				"name": "New shape"
+			}
+		},
+		{
+			"name": "Heart",
+			"description": "",
+			"type": "image",
+			"icon": {
+				"prefix": "fas",
+				"name": "heart"
+			},
+			"option": {
+				"type": "heart",
+				"width": 80,
+				"height": 80,
+				"name": "New shape"
+			}
 		}
+	
 	],
 	"DRAWING": [
 		{
