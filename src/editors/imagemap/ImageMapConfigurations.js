@@ -86,9 +86,6 @@ class ImageMapConfigurations extends Component {
 					<Tabs.TabPane tab={<Icon name="star-half-alt" />} key="styles">
 						<Styles styles={styles} onChangeStyles={onChangeStyles} />
 					</Tabs.TabPane>
-					{/* <Tabs.TabPane tab={<Icon name="table" />} key="datasources">
-                        <DataSources ref={(c) => { this.dataSourcesRef = c; }} dataSources={dataSources} onChangeDataSources={onChangeDataSources} />
-                    </Tabs.TabPane> */}
 				</Tabs>
 			</div>
 		);

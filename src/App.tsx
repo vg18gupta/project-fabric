@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import Title from './components/layout/Title';
 import FlowContainer from './containers/FlowContainer';
-import { FiberEditor, FlowEditor, HexGridEditor, ImageMapEditor, WorkflowEditor } from './editors';
+import { ImageMapEditor } from './editors';
 
 type EditorType = 'imagemap' | 'workflow' | 'flow' | 'hexgrid' | 'fiber';
 
@@ -19,21 +19,6 @@ class App extends Component<any, IState> {
 		this.setState({
 			activeEditor: key,
 		});
-	};
-
-	renderEditor = (activeEditor: EditorType) => {
-		switch (activeEditor) {
-			case 'imagemap':
-				return <ImageMapEditor />;
-			case 'workflow':
-				return <WorkflowEditor />;
-			case 'flow':
-				return <FlowEditor />;
-			case 'hexgrid':
-				return <HexGridEditor />;
-			case 'fiber':
-				return <FiberEditor />;
-		}
 	};
 
 	render() {
@@ -59,10 +44,12 @@ class App extends Component<any, IState> {
 					<script async={true} src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
 				</Helmet>
 				<div className="rde-title">
-					<Title onChangeEditor={this.handleChangeEditor} currentEditor={activeEditor} />
+					<Title onChangeEditor={this.handleChangeEditor} currentEditor={'Project Fabric'} />
 				</div>
 				<FlowContainer>
-					<div className="rde-content">{this.renderEditor(activeEditor)}</div>
+					<div className="rde-content">
+						<ImageMapEditor />
+					</div>
 				</FlowContainer>
 			</div>
 		);
