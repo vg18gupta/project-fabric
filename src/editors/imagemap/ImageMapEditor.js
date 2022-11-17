@@ -17,7 +17,8 @@ import ImageMapItems from './ImageMapItems';
 import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
 import MediaList from '../MediaList';
-import VideoMapEditor from './videoMapEditor';
+
+import VideoMapEditorOuter from './videoMapEditorOuter';
 
 const propertiesToInclude = [
 	'id',
@@ -877,7 +878,7 @@ class ImageMapEditor extends Component {
 					<Content title={title} content={content} loading={loading} className="" />
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Video" key="2">
-							<VideoMapEditor />
+							<VideoMapEditorOuter/>
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Media List" key="3">
 					<MediaList 
