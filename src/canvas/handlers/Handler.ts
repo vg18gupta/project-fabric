@@ -745,6 +745,7 @@ class Handler implements HandlerOptions {
 		if (obj.superType === 'link') {
 			return this.linkHandler.create(newOption, loaded);
 		}
+		debugger
 		let createdObj;
 		// Create canvas object
 		if (obj.type === 'image') {
@@ -752,7 +753,7 @@ class Handler implements HandlerOptions {
 		} else if (obj.type === 'group') {
 			createdObj = this.addGroup(newOption);
 		} else {
-			createdObj = this.fabricObjects[obj.type].create(newOption);
+			createdObj = this.fabricObjects[obj.type].create(newOption||"");
 		}
 		if (group) {
 			return createdObj;
