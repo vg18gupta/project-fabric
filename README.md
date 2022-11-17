@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# React Design Editor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![](https://img.shields.io/npm/l/react-design-editor?style=flat-square)](https://en.wikipedia.org/wiki/MIT_License) [![build](https://github.com/salgum1114/react-design-editor/workflows/build/badge.svg)](https://github.com/salgum1114/react-design-editor/actions) [![](https://flat.badgen.net/npm/v/react-design-editor?icon=npm)](https://www.npmjs.com/package/react-design-editor)
 
-## Available Scripts
+React Design Editor is a module for React, written in Javascript/Typescript which provides two primary features:
 
-In the project directory, you can run:
+-   Image Editor - Create images in React, draw diagrams and arrange compositions using the image editor and save the result to one of several export formats, provides functionality similar to Powerpoint.
+-   Business Process Modelling (BPM) - Design flowcharts and process workflows in React and export the model to JSON, which can be imported into the tool (load/save).
 
-### `npm start`
+The module primarily uses the [Ant Design](https://github.com/ant-design/ant-design/), [Fabric.js](https://github.com/fabricjs/fabric.js) and [React](https://github.com/facebook/react) libraries, but a full list of required dependencies can be found below.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Try it out today - the project is being continually developed to support a variety of different functions.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[View Demo](https://salgum1114.github.io/react-design-editor/)
 
-### `npm test`
+# Feature List
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   [x] Add, remove, resize, reorder, clone, copy/paste and drag/drop elements
+-   [x] Drawing capability, with polygon, line, arrows and link support
+-   [x] Preview mode, tooltips, group/ungroup and zoom functionality
+-   [x] Upload (with drag/drop), import and export to JSON or image
+-   [x] Image cropping, Image filters, alignment, alignment guides
+-   [x] Snap to grid, context menu, animation and video element
+-   [x] Various icons in icon picker and fonts from Google Fonts (20)
+-   [x] HTML/CSS/JS Element, iFrame element
+-   [x] Animation support, with Fade / Bounce / Shake / Scaling / Rotation / Flash effects
+-   [x] Code Editor with HTML / CSS / JS / Preview
+-   [x] Various interaction modes, including grasp, selection, ctrl + drag grab
+-   [x] Multiple layouts, with fixed, responsive, fullscreen and grid modes
+-   [x] SVG, Chart and GIF elements
+-   [x] Undo/Redo support
+-   [ ] Wireframes - in development
+-   [ ] Multiple Map - in development
+-   [ ] Ruler - in development
 
-### `npm run build`
+# Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run `npm install react-design-editor` or `yarn add react-design-editor`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone this Project with `git clone https://github.com/salgum1114/react-design-editor.git`
+2. Install dependencies with `npm install` or `yarn`
+3. Run the App with `npm start` or `yarn start`
+4. Open your web browser to `http://localhost:4000`
 
-### `npm run eject`
+# Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Image Map Editor
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Fixed Layout Mode
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![fixed](https://user-images.githubusercontent.com/19975642/55678049-6aff6180-592e-11e9-8b29-8e1d60df178a.PNG)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. Responsive Layout Mode
 
-## Learn More
+![responsive](https://user-images.githubusercontent.com/19975642/55678050-6cc92500-592e-11e9-8a57-c82d371e4be1.PNG)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Full Screen Layout Mode
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![fullscreen](https://user-images.githubusercontent.com/19975642/55678051-6dfa5200-592e-11e9-9b9e-b8d8ee3ccb08.PNG)
 
-### Code Splitting
+### 4. Preview Mode
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![preview](https://user-images.githubusercontent.com/19975642/55678052-6fc41580-592e-11e9-9958-9a9be8239bd7.PNG)
 
-### Analyzing the Bundle Size
+## Workflow Editor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![workflow](https://user-images.githubusercontent.com/19975642/55678053-718dd900-592e-11e9-9996-cce9b46d8433.PNG)
 
-### Making a Progressive Web App
+## ❤️ Sponsors and Backers [![](https://opencollective.com/react-design-editor/tiers/badge.svg)](https://opencollective.com/react-design-editor/contribute) [![](https://opencollective.com/react-design-editor/tiers/sponsor/badge.svg?label=Sponsor&color=brightgreen)](https://opencollective.com/react-design-editor/contribute) [![](https://opencollective.com/react-design-editor/tiers/backer/badge.svg?label=Backer&color=brightgreen)](https://opencollective.com/react-design-editor/contribute)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[![Sponsored by Workflows for Confluence](https://remote.automation-consultants.com/knowledge/download/attachments/57671882/sponsorship.png)](https://marketplace.atlassian.com/apps/1222276/workflows-for-confluence)
 
-### Advanced Configuration
+[![](https://opencollective.com/react-design-editor/tiers/sponsor.svg?avatarHeight=36)](https://opencollective.com/react-design-editor/contribute)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[![](https://opencollective.com/react-design-editor/tiers/backer.svg?avatarHeight=36)](https://opencollective.com/react-design-editor/contribute)
 
-### Deployment
+# Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Dependency                                                      | License(s)                                         |
+| --------------------------------------------------------------- | -------------------------------------------------- |
+| [React](https://github.com/facebook/react)                      | MIT                                                |
+| [Ant Design](https://github.com/ant-design/ant-design/)         | MIT                                                |
+| [Fabric.js](https://github.com/fabricjs/fabric.js)              | MIT                                                |
+| [MediaElement.js](https://github.com/mediaelement/mediaelement) | MIT                                                |
+| [React-Ace](https://github.com/securingsincity/react-ace)       | MIT                                                |
+| [interact.js](https://github.com/taye/interact.js)              | MIT                                                |
+| [anime.js](https://github.com/juliangarnier/anime/)             | MIT                                                |
+| [Webpack 4](https://github.com/webpack/webpack)                 | MIT                                                |
+| [Babel](https://github.com/babel/babel)                         | MIT                                                |
+| [fontawesome5](https://github.com/FortAwesome/Font-Awesome)     | Icons (CC BY 4.0), Fonts (SIL OFL 1.1), Code (MIT) |
