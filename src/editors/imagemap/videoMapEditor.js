@@ -17,7 +17,6 @@ import ImageMapItems from './ImageMapItems';
 import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
 import MediaList from '../MediaList';
-import VideoMapEditor from './videoMapEditor';
 
 const propertiesToInclude = [
 	'id',
@@ -77,7 +76,7 @@ const defaultOption = {
 	},
 };
 
-class ImageMapEditor extends Component {
+class VideoMapEditor extends Component {
 	state = {
 		selectedItem: null,
 		zoomRatio: 1,
@@ -95,7 +94,7 @@ class ImageMapEditor extends Component {
 
 	componentDidMount() {
 		this.showLoading(true);
-		import('./Descriptors.json').then(descriptors => {
+		import('./VideoDescriptor.json').then(descriptors => {
 			this.setState(
 				{
 					descriptors,
@@ -867,40 +866,9 @@ class ImageMapEditor extends Component {
 				/>
 			</div>
 		);
-		const topTab = <div>
-			<Tabs 
-			defaultActiveKey="1"
-			activeKey={this.state.activeTab + ""}
-			onChange ={this.tabChangeOnEdit}
-			>
-				<Tabs.TabPane tab="Image" key="1">
-					<Content title={title} content={content} loading={loading} className="" />
-				</Tabs.TabPane>
-				<Tabs.TabPane tab="Video" key="2">
-							<VideoMapEditor />
-				</Tabs.TabPane>
-				<Tabs.TabPane tab="Media List" key="3">
-					<MediaList 
-					canvasRef={this.canvasRef}
-					onEditInMain={onEditInMain}
-					tabChangeOnEdit={this.tabChangeOnEdit}
-					>
 
-					</MediaList>
-				</Tabs.TabPane>
-				<Tabs.TabPane tab="Templates" key="4">
-					<MediaList 
-					canvasRef={this.canvasRef}
-					onEditInMain={onEditInMain}
-					template= "true"
-					tabChangeOnEdit={this.tabChangeOnEdit}
-					>
-					</MediaList>
-				</Tabs.TabPane>
-			</Tabs>
-		</div>
-		return  topTab;
+		return  <Content title={title} content={content} loading={loading} className="" />;
 	}
 }
 
-export default ImageMapEditor;
+export default VideoMapEditor;
