@@ -1,26 +1,4 @@
 {
-	"MARKER": [
-		{
-			"name": "Marker",
-			"description": "",
-			"type": "marker",
-			"icon": {
-				"prefix": "fas",
-				"name": "map-marker-alt"
-			},
-			"option": {
-				"type": "i-text",
-				"text": "\uf3c5",
-				"fontFamily": "Font Awesome 5 Free",
-				"fontWeight": 900,
-				"fontSize": 60,
-				"width": 30,
-				"height": 30,
-				"editable": false,
-				"name": "New marker"
-			}
-		}
-	],
 	"TEXT": [
 		{
 			"name": "Text",
@@ -174,92 +152,6 @@
 			"option": {
 				"type": "arrow",
 				"name": "New arrow"
-			}
-		}
-	],
-	"ELEMENT": [
-		{
-			"name": "Chart",
-			"description": "",
-			"type": "element",
-			"icon": {
-				"prefix": "fas",
-				"name": "chart-line"
-			},
-			"option": {
-				"superType": "element",
-				"type": "chart",
-				"name": "New chart",
-				"width": 356,
-				"height": 356
-			}
-		},
-		{
-			"name": "Element",
-			"description": "",
-			"type": "element",
-			"icon": {
-				"prefix": "fab",
-				"name": "html5"
-			},
-			"option": {
-				"superType": "element",
-				"type": "element",
-				"width": 480,
-				"height": 270,
-				"name": "New element"
-			}
-		},
-		{
-			"name": "Iframe",
-			"description": "",
-			"type": "element",
-			"icon": {
-				"prefix": "fas",
-				"name": "window-maximize"
-			},
-			"option": {
-				"superType": "element",
-				"type": "iframe",
-				"width": 480,
-				"height": 270,
-				"name": "New iframe"
-			}
-		},
-		{
-			"name": "Video",
-			"description": "",
-			"type": "element",
-			"icon": {
-				"prefix": "fab",
-				"name": "youtube"
-			},
-			"option": {
-				"superType": "element",
-				"type": "video",
-				"width": 480,
-				"height": 270,
-				"name": "New video",
-				"autoplay": true,
-				"muted": true,
-				"loop": true
-			}
-		}
-	],
-	"SVG": [
-		{
-			"name": "Default",
-			"description": "",
-			"type": "default",
-			"icon": {
-				"prefix": "fas",
-				"name": "bezier-curve"
-			},
-			"option": {
-				"type": "svg",
-				"superType": "svg",
-				"name": "New SVG",
-				"loadType": "svg"
 			}
 		}
 	]

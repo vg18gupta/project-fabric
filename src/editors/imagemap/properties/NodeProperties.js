@@ -13,7 +13,7 @@ class NodeProperties extends Component {
 		canvasRef: PropTypes.any,
 		selectedItem: PropTypes.object,
 	};
-
+	
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (this.props.selectedItem && nextProps.selectedItem) {
 			if (this.props.selectedItem.id !== nextProps.selectedItem.id) {
@@ -28,9 +28,10 @@ class NodeProperties extends Component {
 		return (
 			<Scrollbar>
 				<Form layout="horizontal" colon={false}>
-					<Collapse bordered={false}>
+					<Collapse bordered={false} defaultActiveKey={['image']}>
 						{selectedItem && PropertyDefinition[selectedItem.type] ? (
 							Object.keys(PropertyDefinition[selectedItem.type]).map(key => {
+								console.log(key)
 								return (
 									<Panel
 										key={key}

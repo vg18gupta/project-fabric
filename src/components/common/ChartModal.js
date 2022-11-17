@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'antd';
 import ReactAce from 'react-ace';
-import i18n from 'i18next';
 
 import Icon from '../icon/Icon';
 
@@ -65,7 +64,7 @@ class CodeModal extends Component {
 		const { visible, chartOption, tempChartOption } = this.state;
 		const label = (
 			<React.Fragment>
-				<span style={{ marginRight: 8 }}>{i18n.t('common.code')}</span>
+				<span style={{ marginRight: 8 }}>Code</span>
 				<Button onClick={onClick} shape="circle" className="rde-action-btn">
 					<Icon name="edit" />
 				</Button>

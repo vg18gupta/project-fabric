@@ -7,7 +7,6 @@ import enUS from 'antd/lib/locale-provider/en_US';
 import App from './App';
 import { register } from './serviceWorker';
 import i18next from 'i18next';
-import { i18nClient } from './i18n';
 
 const antResources = {
 	ko: koKR,
@@ -32,7 +31,6 @@ const render = Component => {
 	);
 };
 
-i18nClient();
 
 render(App);
 
