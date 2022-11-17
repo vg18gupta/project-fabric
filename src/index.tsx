@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import i18next from 'i18next';
 import { AppContainer } from 'react-hot-loader';
 import { LocaleProvider } from 'antd';
 import koKR from 'antd/lib/locale-provider/ko_KR';
 import enUS from 'antd/lib/locale-provider/en_US';
 import App from './App';
 import { register } from './serviceWorker';
-import i18next from 'i18next';
+
 
 const antResources = {
 	ko: koKR,
