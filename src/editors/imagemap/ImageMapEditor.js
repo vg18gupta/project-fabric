@@ -1,4 +1,5 @@
 import { Badge, Button, Menu, Popconfirm } from "antd";
+import i18n from "i18next";
 import debounce from "lodash/debounce";
 import React, { Component } from "react";
 import Canvas from "../../canvas/Canvas";
@@ -461,7 +462,11 @@ class ImageMapEditor extends Component {
         const { layerX: left, layerY: top } = event;
         return (
           <Menu>
-            <Menu.SubMenu key="add" style={{ width: 120 }} title="Add">
+            <Menu.SubMenu
+              key="add"
+              style={{ width: 120 }}
+              title={i18n.t("action.add")}
+            >
               {this.transformList().map((item) => {
                 const option = Object.assign({}, item.option, { left, top });
                 const newItem = Object.assign({}, item, { option });
@@ -483,21 +488,21 @@ class ImageMapEditor extends Component {
                 this.canvasRef.handler.toGroup();
               }}
             >
-              Group
+              {i18n.t("action.object-group")}
             </Menu.Item>
             <Menu.Item
               onClick={() => {
                 this.canvasRef.handler.duplicate();
               }}
             >
-              Clone
+              {i18n.t("action.clone")}
             </Menu.Item>
             <Menu.Item
               onClick={() => {
                 this.canvasRef.handler.remove();
               }}
             >
-              Delete
+              {i18n.t("action.delete")}
             </Menu.Item>
           </Menu>
         );
@@ -510,21 +515,21 @@ class ImageMapEditor extends Component {
                 this.canvasRef.handler.toActiveSelection();
               }}
             >
-              Ungroup
+              {i18n.t("action.object-ungroup")}
             </Menu.Item>
             <Menu.Item
               onClick={() => {
                 this.canvasRef.handler.duplicate();
               }}
             >
-              Clone
+              {i18n.t("action.clone")}
             </Menu.Item>
             <Menu.Item
               onClick={() => {
                 this.canvasRef.handler.remove();
               }}
             >
-              Delete
+              {i18n.t("action.delete")}
             </Menu.Item>
           </Menu>
         );
@@ -536,14 +541,14 @@ class ImageMapEditor extends Component {
               this.canvasRef.handler.duplicateById(target.id);
             }}
           >
-            Clone
+            {i18n.t("action.clone")}
           </Menu.Item>
           <Menu.Item
             onClick={() => {
               this.canvasRef.handler.removeById(target.id);
             }}
           >
-            Delete
+            {i18n.t("action.delete")}
           </Menu.Item>
         </Menu>
       );
@@ -680,6 +685,63 @@ class ImageMapEditor extends Component {
     onSaveImage: () => {
       this.canvasRef.handler.saveCanvasImage();
     },
+    onSaveJson: () => {
+      const objects = this.canvasRef.handler.exportJSON().filter((obj) => {
+        if (!obj.id) {
+          return false;
+        }
+        return true;
+      });
+      const { animations, styles, dataSources } = this.state;
+      const exportDatas = {
+        objects,
+        animations,
+        styles,
+        dataSources,
+      };
+      const url =
+        "https://apis.staging.sharechat.com/self-serve-service/v1/external/selfServe/asset/temp/create";
+      const response = fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: "userId1",
+          creativeData: [{ ...exportDatas }],
+        }),
+      });
+    },
+    onNewCanvas: () => {
+      console.log("here in removwe", this.canvasRef.canvas);
+      this.canvasRef.canvas
+        ? this.canvasRef.canvas.remove(...this.canvasRef.canvas.getObjects())
+        : {};
+      //TODO add base image
+      // const id = uuid();
+      // const item = {option: {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}}
+      // const option = Object.assign({}, {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}, { id });
+
+      // this.canvasRef.handler.add(option);
+    },
+    onEditInMain: (data) => {
+      const { objects, animations, styles, dataSources } = data;
+      this.setState({
+        animations,
+        styles,
+        dataSources,
+      });
+      if (objects) {
+        this.canvasRef.handler.clear(true);
+        const data = objects.filter((obj) => {
+          if (!obj.id) {
+            return false;
+          }
+          return true;
+        });
+        this.canvasRef.handler.importJSON(data);
+      }
+    },
   };
 
   transformList = () => {
@@ -694,7 +756,9 @@ class ImageMapEditor extends Component {
       loading,
     });
   };
-
+  tabChangeOnEdit = (key) => {
+    this.setState({ activeTab: key });
+  };
   changeEditing = (editing) => {
     this.setState({
       editing,
@@ -735,6 +799,9 @@ class ImageMapEditor extends Component {
       onChangeStyles,
       onChangeDataSources,
       onSaveImage,
+      onSaveJson,
+      onNewCanvas,
+      onEditInMain,
     } = this.handlers;
     const action = (
       <React.Fragment>
@@ -743,15 +810,15 @@ class ImageMapEditor extends Component {
           shape="circle"
           icon="file-download"
           disabled={!editing}
-          tooltipTitle="Download"
+          tooltipTitle={i18n.t("action.download")}
           onClick={onDownload}
           tooltipPlacement="bottomRight"
         />
         {editing ? (
           <Popconfirm
-            title="The image map contents have been modified. Do you want to do that anyway?"
-            okText="Ok"
-            cancelText="Cancel"
+            title={i18n.t("imagemap.imagemap-editing-confirm")}
+            okText={i18n.t("action.ok")}
+            cancelText={i18n.t("action.cancel")}
             onConfirm={onUpload}
             placement="bottomRight"
           >
@@ -759,7 +826,7 @@ class ImageMapEditor extends Component {
               className="rde-action-btn"
               shape="circle"
               icon="file-upload"
-              tooltipTitle="Upload"
+              tooltipTitle={i18n.t("action.upload")}
               tooltipPlacement="bottomRight"
             />
           </Popconfirm>
@@ -768,7 +835,7 @@ class ImageMapEditor extends Component {
             className="rde-action-btn"
             shape="circle"
             icon="file-upload"
-            tooltipTitle="Upload"
+            tooltipTitle={i18n.t("action.upload")}
             tooltipPlacement="bottomRight"
             onClick={onUpload}
           />
@@ -777,7 +844,7 @@ class ImageMapEditor extends Component {
           className="rde-action-btn"
           shape="circle"
           icon="image"
-          tooltipTitle="Save Image"
+          tooltipTitle={i18n.t("action.image-save")}
           onClick={onSaveImage}
           tooltipPlacement="bottomRight"
         />
@@ -785,10 +852,32 @@ class ImageMapEditor extends Component {
     );
     const titleContent = (
       <React.Fragment>
-        <span>Image Map Editor</span>
+        <Button
+          className=""
+          type="primary"
+          icon="file-download"
+          shape="round"
+          tooltipTitle={i18n.t("action.download")}
+          onClick={onSaveJson}
+          tooltipPlacement="bottomRight"
+        >
+          Save
+        </Button>
+        <Button
+          className=""
+          type="primary"
+          shape="round"
+          icon="file-upload"
+          tooltipTitle={i18n.t("action.upload")}
+          tooltipPlacement="bottomRight"
+          onClick={onNewCanvas}
+        >
+          New
+        </Button>
       </React.Fragment>
     );
     const title = <ImageMapTitle title={titleContent} action={action} />;
+
     const content = (
       <div className="rde-editor">
         <ImageMapItems
@@ -867,9 +956,35 @@ class ImageMapEditor extends Component {
         />
       </div>
     );
-    return (
-      <Content title={title} content={content} loading={loading} className="" />
+    const topTab = (
+      <div>
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={this.state.activeTab + ""}
+          onChange={this.tabChangeOnEdit}
+        >
+          <Tabs.TabPane tab="Image" key="1">
+            <Content
+              title={title}
+              content={content}
+              loading={loading}
+              className=""
+            />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Video" key="2">
+            Content of Tab Pane 2
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Media List" key="3">
+            <MediaList
+              canvasRef={this.canvasRef}
+              onEditInMain={onEditInMain}
+              tabChangeOnEdit={this.tabChangeOnEdit}
+            ></MediaList>
+          </Tabs.TabPane>
+        </Tabs>
+      </div>
     );
+    return topTab;
   }
 }
 
