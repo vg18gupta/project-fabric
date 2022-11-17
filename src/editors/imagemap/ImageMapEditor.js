@@ -89,6 +89,7 @@ class ImageMapEditor extends Component {
 		editing: false,
 		descriptors: {},
 		objects: undefined,
+		activeTab: 1
 	};
 
 	componentDidMount() {
@@ -636,6 +637,24 @@ class ImageMapEditor extends Component {
 			// const option = Object.assign({}, {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}, { id });
 			
 			// this.canvasRef.handler.add(option);
+		},
+		onEditInMain: (data)=>{
+			const { objects, animations, styles, dataSources } = data;
+						this.setState({
+							animations,
+							styles,
+							dataSources,
+						});
+						if (objects) {
+							this.canvasRef.handler.clear(true);
+							const data = objects.filter(obj => {
+								if (!obj.id) {
+									return false;
+								}
+								return true;
+							});
+							this.canvasRef.handler.importJSON(data);
+						}
 		}
 	};
 
@@ -648,7 +667,9 @@ class ImageMapEditor extends Component {
 			loading,
 		});
 	};
-
+	tabChangeOnEdit = (key)=>{
+		this.setState({activeTab: key})
+	}
 	changeEditing = editing => {
 		this.setState({
 			editing,
@@ -690,7 +711,8 @@ class ImageMapEditor extends Component {
 			onChangeDataSources,
 			onSaveImage,
 			onSaveJson,
-			onNewCanvas
+			onNewCanvas,
+			onEditInMain
 		} = this.handlers;
 		const action = (
 			<React.Fragment>
@@ -845,7 +867,11 @@ class ImageMapEditor extends Component {
 			</div>
 		);
 		const topTab = <div>
-			<Tabs defaultActiveKey="1">
+			<Tabs 
+			defaultActiveKey="1"
+			activeKey={this.state.activeTab + ""}
+			onChange ={this.tabChangeOnEdit}
+			>
 				<Tabs.TabPane tab="Image" key="1">
 					<Content title={title} content={content} loading={loading} className="" />
 				</Tabs.TabPane>
@@ -853,7 +879,13 @@ class ImageMapEditor extends Component {
 				Content of Tab Pane 2
 				</Tabs.TabPane>
 				<Tabs.TabPane tab="Media List" key="3">
-					<MediaList></MediaList>
+					<MediaList 
+					canvasRef={this.canvasRef}
+					onEditInMain={onEditInMain}
+					tabChangeOnEdit={this.tabChangeOnEdit}
+					>
+
+					</MediaList>
 				</Tabs.TabPane>
 			</Tabs>
 		</div>

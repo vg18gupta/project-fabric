@@ -61,7 +61,7 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 		this.canvas.setBackgroundColor(mergedCanvasOption.backgroundColor, this.canvas.renderAll.bind(this.canvas));
 		console.log("uchit", loadFromObject)
 		if(loadFromObject){
-			console.log("here why?")
+			// console.log("here why?")
 			this.canvas.loadFromJSON(loadFromObject, this.canvas.renderAll.bind(this.canvas));
 		}
 		this.canvas.renderAll();
