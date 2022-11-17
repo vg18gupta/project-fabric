@@ -1,5 +1,7 @@
-import { Badge, Button, Menu, Popconfirm } from 'antd';
+import { Badge, Button, Menu, Popconfirm, Layout, Tabs } from 'antd';
+const { Header } = Layout;
 import i18n from 'i18next';
+import { uuid } from 'uuidv4';
 import debounce from 'lodash/debounce';
 import React, { Component } from 'react';
 import Canvas from '../../canvas/Canvas';
@@ -14,6 +16,7 @@ import ImageMapHeaderToolbar from './ImageMapHeaderToolbar';
 import ImageMapItems from './ImageMapItems';
 import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
+import MediaList from '../MediaList';
 
 const propertiesToInclude = [
 	'id',
@@ -601,6 +604,39 @@ class ImageMapEditor extends Component {
 		onSaveImage: () => {
 			this.canvasRef.handler.saveCanvasImage();
 		},
+		onSaveJson: () => {
+			const objects = this.canvasRef.handler.exportJSON().filter(obj => {
+				if (!obj.id) {
+					return false;
+				}
+				return true;
+			});
+			const { animations, styles, dataSources } = this.state;
+			const exportDatas = {
+				objects,
+				animations,
+				styles,
+				dataSources,
+			};
+			const url = 'https://apis.staging.sharechat.com/self-serve-service/v1/external/selfServe/asset/temp/create'
+			const response =  fetch(url, {
+				method: 'POST', 
+				headers: {
+				  'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({userId:'userId1', creativeData: [{...exportDatas}]})
+			  });
+		},
+		onNewCanvas: ()=>{
+			console.log("here in removwe", this.canvasRef.canvas);
+			this.canvasRef.canvas? this.canvasRef.canvas.remove(...this.canvasRef.canvas.getObjects()): {};
+			//TODO add base image 
+			// const id = uuid();
+			// const item = {option: {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}}
+			// const option = Object.assign({}, {backgroundColor: "#fff", height: 400, width: 600,fill:'rgb(0,0,0)',  type: "image"}, { id });
+			
+			// this.canvasRef.handler.add(option);
+		}
 	};
 
 	transformList = () => {
@@ -653,6 +689,8 @@ class ImageMapEditor extends Component {
 			onChangeStyles,
 			onChangeDataSources,
 			onSaveImage,
+			onSaveJson,
+			onNewCanvas
 		} = this.handlers;
 		const action = (
 			<React.Fragment>
@@ -703,10 +741,31 @@ class ImageMapEditor extends Component {
 		);
 		const titleContent = (
 			<React.Fragment>
-				<span>{i18n.t('imagemap.imagemap-editor')}</span>
+				<Button
+					className=""
+					type= "primary"
+					icon="file-download"
+					shape="round"
+					tooltipTitle={i18n.t('action.download')}
+					onClick={onSaveJson}
+					tooltipPlacement="bottomRight"
+				>Save
+					</Button>
+				<Button
+						className=""
+						type= "primary"
+						shape="round"
+						icon="file-upload"
+						tooltipTitle={i18n.t('action.upload')}
+						tooltipPlacement="bottomRight"
+						onClick={onNewCanvas}
+					>
+						New
+						</Button>
 			</React.Fragment>
 		);
 		const title = <ImageMapTitle title={titleContent} action={action} />;
+		
 		const content = (
 			<div className="rde-editor">
 				<ImageMapItems
@@ -785,7 +844,20 @@ class ImageMapEditor extends Component {
 				/>
 			</div>
 		);
-		return <Content title={title} content={content} loading={loading} className="" />;
+		const topTab = <div>
+			<Tabs defaultActiveKey="1">
+				<Tabs.TabPane tab="Image" key="1">
+					<Content title={title} content={content} loading={loading} className="" />
+				</Tabs.TabPane>
+				<Tabs.TabPane tab="Video" key="2">
+				Content of Tab Pane 2
+				</Tabs.TabPane>
+				<Tabs.TabPane tab="Media List" key="3">
+					<MediaList></MediaList>
+				</Tabs.TabPane>
+			</Tabs>
+		</div>
+		return  topTab;
 	}
 }
 

@@ -6,6 +6,7 @@ interface IProps {
 	title?: React.ReactNode;
 	leftSider?: React.ReactNode;
 	content?: React.ReactNode;
+	topTab?: React.ReactNode;
 	rightSider?: React.ReactNode;
 	className?: string;
 	loading?: boolean;
@@ -27,11 +28,12 @@ class Content extends Component<IProps> {
 	};
 
 	render() {
-		const { title, leftSider, content, rightSider, className, loading, children } = this.props;
+		const { title,topTab, leftSider, content, rightSider, className, loading, children } = this.props;
 		return (
 			<Spin spinning={loading}>
 				<Layout className="rde-content-layout">
 					{title}
+					{topTab}
 					<Layout
 						style={{
 							overflowY: 'auto',
