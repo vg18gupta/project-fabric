@@ -46,46 +46,7 @@ class Title extends Component<IProps> {
 				alignItems="center"
 			>
 				<Flex style={{ marginLeft: 8 }} flex="0 1 auto">
-					<span style={{ color: '#fff', fontSize: 24, fontWeight: 500 }}>React Design Editor</span>
-					<Tooltip title={i18next.t('action.go-github')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.goGithub}
-						>
-							<Icon name="github" prefix="fab" size={1.5} />
-						</Button>
-					</Tooltip>
-					<Tooltip title={i18next.t('action.go-docs')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.goDocs}
-						>
-							<Icon name="book" prefix="fas" size={1.5} />
-						</Button>
-					</Tooltip>
-					<Tooltip title={i18next.t('action.shortcut-help')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.showHelp}
-						>
-							<Icon name="question" prefix="fas" size={1.5} />
-						</Button>
-					</Tooltip>
+					<span style={{ color: '#fff', fontSize: 24, fontWeight: 500 }}>Project Fabric</span>
 				</Flex>
 				<Flex style={{ marginLeft: 88 }}>
 					<Menu
@@ -95,19 +56,6 @@ class Title extends Component<IProps> {
 						onClick={this.props.onChangeEditor}
 						selectedKeys={[this.props.currentEditor]}
 					>
-						<Menu.Item key="imagemap" style={{ color: '#fff' }}>
-							{i18next.t('imagemap.imagemap')}
-						</Menu.Item>
-						<Menu.Item key="workflow" style={{ color: '#fff' }}>
-							{i18next.t('workflow.workflow')}
-						</Menu.Item>
-						{/* <Menu.Item key="flow" style={{ color: '#fff' }}>{i18n.t('flow.flow')}</Menu.Item> */}
-						{/* <Menu.Item key="hexgrid" style={{ color: '#fff' }}>
-							{i18next.t('hexgrid.hexgrid')}
-						</Menu.Item>
-						<Menu.Item key="fiber" style={{ color: '#fff' }}>
-							{i18next.t('fiber.fiber')}
-						</Menu.Item> */}
 					</Menu>
 				</Flex>
 				<Flex flex="1" justifyContent="flex-end">

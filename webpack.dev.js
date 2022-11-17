@@ -50,7 +50,7 @@ module.exports = merge(baseConfig, {
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			title: 'React Design Editor',
+			title: 'Project Fabric',
 		}),
 	],
 });
