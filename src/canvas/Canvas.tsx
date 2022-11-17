@@ -50,7 +50,7 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 	};
 
 	componentDidMount() {
-		const { editable, canvasOption, width, height, responsive, ...other } = this.props;
+		const { editable, canvasOption, width, height, responsive, loadFromObject, ...other } = this.props;
 		const { id } = this.state;
 		const mergedCanvasOption = Object.assign({}, defaults.canvasOption, canvasOption, {
 			width,
@@ -59,6 +59,11 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 		});
 		this.canvas = new fabric.Canvas(`canvas_${id}`, mergedCanvasOption);
 		this.canvas.setBackgroundColor(mergedCanvasOption.backgroundColor, this.canvas.renderAll.bind(this.canvas));
+		console.log("uchit", loadFromObject)
+		if(loadFromObject){
+			console.log("here why?")
+			this.canvas.loadFromJSON(loadFromObject, this.canvas.renderAll.bind(this.canvas));
+		}
 		this.canvas.renderAll();
 		this.container = this.containerRef.current;
 		this.handler = new Handler({
@@ -71,6 +76,7 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 			canvasOption: mergedCanvasOption,
 			...other,
 		});
+		// this.handler.importJSON(data)
 		if (this.props.responsive) {
 			this.createObserver();
 		} else {
