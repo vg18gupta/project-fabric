@@ -1,5 +1,7 @@
-import { Badge, Button, Menu, Popconfirm } from "antd";
+import { Badge, Button, Menu, Popconfirm, Layout, Tabs } from "antd";
+const { Header } = Layout;
 import i18n from "i18next";
+import { uuid } from "uuidv4";
 import debounce from "lodash/debounce";
 import React, { Component } from "react";
 import Canvas from "../../canvas/Canvas";
@@ -14,6 +16,8 @@ import ImageMapHeaderToolbar from "./ImageMapHeaderToolbar";
 import ImageMapItems from "./ImageMapItems";
 import ImageMapPreview from "./ImageMapPreview";
 import ImageMapTitle from "./ImageMapTitle";
+import MediaList from "../MediaList";
+import VideoMapEditor from "./videoMapEditor";
 
 const propertiesToInclude = [
   "id",
@@ -751,20 +755,6 @@ class ImageMapEditor extends Component {
     );
   };
 
-  showLoading = (loading) => {
-    this.setState({
-      loading,
-    });
-  };
-  tabChangeOnEdit = (key) => {
-    this.setState({ activeTab: key });
-  };
-  changeEditing = (editing) => {
-    this.setState({
-      editing,
-    });
-  };
-
   render() {
     const {
       preview,
@@ -972,12 +962,20 @@ class ImageMapEditor extends Component {
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Video" key="2">
-            Content of Tab Pane 2
+            <VideoMapEditor />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Media List" key="3">
             <MediaList
               canvasRef={this.canvasRef}
               onEditInMain={onEditInMain}
+              tabChangeOnEdit={this.tabChangeOnEdit}
+            ></MediaList>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Templates" key="4">
+            <MediaList
+              canvasRef={this.canvasRef}
+              onEditInMain={onEditInMain}
+              template="true"
               tabChangeOnEdit={this.tabChangeOnEdit}
             ></MediaList>
           </Tabs.TabPane>
