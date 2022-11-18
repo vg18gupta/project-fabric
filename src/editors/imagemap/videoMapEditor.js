@@ -109,6 +109,9 @@ class VideoMapEditor extends Component {
 		});
 	}
 
+	updateHandler = ()=>{
+		this.props.passCanvasToParent(this.props.videoEditorId, this.canvasRef);
+	}
 	canvasHandlers = {
 		onAdd: target => {
 			const { editing } = this.state;
@@ -121,6 +124,7 @@ class VideoMapEditor extends Component {
 				return;
 			}
 			this.canvasRef.handler.select(target);
+			this.updateHandler();
 		},
 		onSelect: target => {
 			const { selectedItem } = this.state;
@@ -336,6 +340,8 @@ class VideoMapEditor extends Component {
 				return;
 			}
 			this.canvasRef.handler.set(changedKey, changedValue);
+			this.updateHandler();
+
 		},
 		onChangeWokarea: (changedKey, changedValue, allValues) => {
 			if (changedKey === 'layout') {
@@ -357,6 +363,8 @@ class VideoMapEditor extends Component {
 			}
 			this.canvasRef.handler.workarea.set(changedKey, changedValue);
 			this.canvasRef.canvas.requestRenderAll();
+			this.updateHandler();
+
 		},
 		onTooltip: (ref, target) => {
 			const value = Math.random() * 10 + 1;
