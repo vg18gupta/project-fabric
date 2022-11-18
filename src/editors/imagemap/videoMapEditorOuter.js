@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import VideoMapEditor from './videoMapEditor';
 import {Button, Tabs, Modal} from 'antd';
+import VideoPreview from "./videoPreview";
 
 class VideoMapEditorOuter extends Component{
     state ={
@@ -71,7 +72,7 @@ class VideoMapEditorOuter extends Component{
         this.setState({
             isModalOpen: true
         })
-        //Pull data for each canvas from state and create image 
+        //Pull data for each canvas from state and create image
     }
     passCanvasToParent = (id,data)=>{
         //Set canvas data in state
@@ -87,13 +88,13 @@ class VideoMapEditorOuter extends Component{
             isModalOpen: true
         })
       };
-    
+
     handleOk = () => {
         this.setState({
             isModalOpen: false
         })
       };
-    
+
     handleCancel = () => {
         this.setState({
             isModalOpen: false
@@ -103,19 +104,17 @@ class VideoMapEditorOuter extends Component{
     render(){
         const mappedImageSrc = Object.keys(this.state.videoEditorCanvases).map((i)=>{
             if(this.state.videoEditorCanvases[i] && this.state.videoEditorCanvases[i].handler){
-                return <img  src = {this.state.videoEditorCanvases[i].handler.saveCanvasToDataURL()}/>
+                return this.state.videoEditorCanvases[i].handler.saveCanvasToDataURL();
+            } else {
+                return ''
             }
-            else{
-                return <div>nothing</div>
-            }
-            
         })
         const mappedItems = this.state.items.map(i=>{
 			return (
 			<Tabs.TabPane tab={i.label} key={i.key}>
 			  {/* <Content title={title} content={content} loading={loading} className="" /> */}
               <VideoMapEditor videoEditorId = {i.key + "_videoEditor"} passCanvasToParent={this.passCanvasToParent}/>
-              
+
 			</Tabs.TabPane>)
 		})
 		return <div>
@@ -128,9 +127,9 @@ class VideoMapEditorOuter extends Component{
 			>
 				{mappedItems}
 		</Tabs>
-       
+
         <Modal title="Basic Modal" open={this.state.isModalOpen} visible={this.state.isModalOpen} onOk={this.handleOk} onCancel={this.handleCancel}>
-        {mappedImageSrc}
+			<VideoPreview imageData={mappedImageSrc}/>
         </Modal>
         </div>
     }
