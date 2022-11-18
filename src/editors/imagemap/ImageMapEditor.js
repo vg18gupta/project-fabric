@@ -992,7 +992,7 @@ class ImageMapEditor extends Component {
           <Tabs.TabPane tab="Video" key="2">
             <VideoMapEditorOuter />
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Media List" key="3">
+          <Tabs.TabPane tab="My projects" key="3">
             <MediaList
               canvasRef={this.canvasRef}
               onEditInMain={onEditInMain}
