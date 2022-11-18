@@ -745,7 +745,7 @@ class Handler implements HandlerOptions {
 		if (obj.superType === 'link') {
 			return this.linkHandler.create(newOption, loaded);
 		}
-		
+
 		let createdObj;
 		// Create canvas object
 		if (obj.type === 'image') {
@@ -1837,6 +1837,40 @@ class Handler implements HandlerOptions {
 
 		return dataUrl;
 	};
+	/**
+	 * Save canvas as image
+	 * @param {string} [option={ name: 'New Image', format: 'png', quality: 1 }]
+	 */
+	public saveCanvasImageToSelfServe = (option = { name: 'New Image', format: 'png', quality: 1 }) => {
+		console.log('here..234234 ee')
+		// If it's zoomed out/in, the container will also include in the image
+		// hence need to reset the zoom level.
+		this.zoomHandler.zoomOneToOne();
+
+		const { left, top, width, height } = this.workarea;
+		const dataUrl = this.canvas.toDataURL({
+			...option,
+			left,
+			top,
+			width,
+			height,
+			enableRetinaScaling: true,
+		});
+
+		const url = 'https://apis.staging.sharechat.com/self-serve-service/v1/external/selfServe/asset/temp/create2'
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				userId: 'ZPy1GCVB1',
+				dataUrl,
+			})
+		});
+
+	};
+
 	/**
 	 * Sets "angle" of an instance with centered rotation
 	 *

@@ -90,6 +90,29 @@ class VideoMapEditorOuter extends Component{
       };
 
     handleOk = () => {
+		const url = 'https://apis.staging.sharechat.com/self-serve-service/v1/external/fabric/fileUpload';
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				userId: 'ZPy1GCVB1',
+				imageData: Object.keys(this.state.videoEditorCanvases).map((i)=>{
+					if(this.state.videoEditorCanvases[i] && this.state.videoEditorCanvases[i].handler){
+						return this.state.videoEditorCanvases[i].handler.saveCanvasToDataURL();
+					} else {
+						return ''
+					}
+				}).filter((value) => {
+					if (value) {
+						return true;
+					} else {
+						return false;
+					}
+				})
+			})
+		});
         this.setState({
             isModalOpen: false
         })
@@ -129,7 +152,7 @@ class VideoMapEditorOuter extends Component{
 		</Tabs>
 
         <Modal title="Basic Modal" open={this.state.isModalOpen} visible={this.state.isModalOpen} onOk={this.handleOk} onCancel={this.handleCancel}>
-			<VideoPreview imageData={mappedImageSrc}/>
+			<VideoPreview style={{width: 600, height: 600}} imageData={mappedImageSrc}/>
         </Modal>
         </div>
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Progress } from 'antd';
+import {Button, Progress} from 'antd';
 
 class VideoPreview extends Component {
     state = {
@@ -76,11 +76,19 @@ class VideoPreview extends Component {
         return (
             <>
                 <div>
-                    <img style={{ width: 300, height: 300 }} src={this.state.activeImage}></img>;
+                    <img style={{ width: 450, height: 350 }} src={this.state.activeImage}></img>;
                 </div>
                 <div>
-                    <button onClick={(c) => { this.playPause() }}>play/pause</button>
-                    <Progress style={{ width: 300, height: 300 }} percent={this.state.progress} format={percent => ``} />
+                    <Button
+                        className=""
+                        type= "primary"
+                        shape="round"
+                        icon="image"
+                        onClick={() => {this.playPause()}}
+                    >
+                        { !this.state.isPlaying ? 'Play' : 'Pause' }
+                    </Button>
+                    <Progress style={{ width: 450, height: 300 }} percent={this.state.progress} format={percent => ``} />
                 </div>
             </>
         )
