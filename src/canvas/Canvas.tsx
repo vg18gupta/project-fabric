@@ -36,9 +36,9 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 	static defaultProps: CanvasProps = {
 		id: uuid(),
 		editable: true,
-		zoomEnabled: true,
-		minZoom: 30,
-		maxZoom: 300,
+		zoomEnabled: false,
+
+
 		responsive: true,
 		width: 0,
 		height: 0,
@@ -59,8 +59,8 @@ class InternalCanvas extends Component<CanvasProps, IState> implements CanvasIns
 		});
 		this.canvas = new fabric.Canvas(`canvas_${id}`, mergedCanvasOption);
 		this.canvas.setBackgroundColor(mergedCanvasOption.backgroundColor, this.canvas.renderAll.bind(this.canvas));
-		console.log("uchit", loadFromObject)
-		if(loadFromObject){
+
+		if (loadFromObject) {
 			// console.log("here why?")
 			this.canvas.loadFromJSON(loadFromObject, this.canvas.renderAll.bind(this.canvas));
 		}
