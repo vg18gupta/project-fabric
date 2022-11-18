@@ -166,30 +166,6 @@ class ImageMapHeaderToolbar extends Component {
             tooltipTitle="All delete"
           />
         </Flex.Item>
-        <Flex.Item className="rde-canvas-toolbar rde-canvas-toolbar-history">
-          <CommonButton
-            className="rde-action-btn"
-            disabled={
-              isCropping ||
-              (canvasRef && !canvasRef.handler?.transactionHandler.undos.length)
-            }
-            onClick={() => canvasRef.handler?.transactionHandler.undo()}
-          >
-            <Icon name="undo-alt" style={{ marginRight: 8 }} />
-            Undo
-          </CommonButton>
-          <CommonButton
-            className="rde-action-btn"
-            disabled={
-              isCropping ||
-              (canvasRef && !canvasRef.handler?.transactionHandler.redos.length)
-            }
-            onClick={() => canvasRef.handler?.transactionHandler.redo()}
-          >
-            Redo
-            <Icon name="redo-alt" style={{ marginLeft: 8 }} />
-          </CommonButton>
-        </Flex.Item>
       </Flex>
     );
   }
