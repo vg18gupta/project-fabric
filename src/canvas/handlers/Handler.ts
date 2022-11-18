@@ -1864,7 +1864,7 @@ class Handler implements HandlerOptions {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				userId: '3u4NQTBNTN',
+				userId: 'ZPy1GCVB1',
 				dataUrl,
 			})
 		});
