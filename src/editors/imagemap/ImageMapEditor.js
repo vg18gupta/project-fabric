@@ -17,7 +17,6 @@ import ImageMapItems from './ImageMapItems';
 import ImageMapPreview from './ImageMapPreview';
 import ImageMapTitle from './ImageMapTitle';
 import MediaList from '../MediaList';
-import VideoMapEditor from './videoMapEditor';
 import VideoMapEditorOuter from './videoMapEditorOuter';
 
 const propertiesToInclude = [

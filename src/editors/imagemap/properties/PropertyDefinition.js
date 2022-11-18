@@ -4,6 +4,7 @@ import ImageProperty from "./ImageProperty";
 import TextProperty from "./TextProperty";
 import ShadowProperty from "./ShadowProperty";
 import ImageFilterProperty from "./ImageFilterProperty";
+import VideoProperty from './VideoProperty';
 
 export default {
   group: {
@@ -164,4 +165,14 @@ export default {
       component: ShadowProperty,
     },
   },
+  video: {
+	general: {
+		title: 'General',
+		component: GeneralProperty,
+	},
+	video: {
+		title: 'Video',
+		component: VideoProperty,
+	},
+}
 };

@@ -70,6 +70,9 @@ class ImageMapConfigurations extends Component {
 					onChange={onChangeTab}
 					tabBarStyle={{ marginTop: 60 }}
 				>
+					{/* <Tabs.TabPane tab={<Icon name="cog" />} key="map">
+						<VideoPro onChange={onChange} canvasRef={canvasRef} />
+					</Tabs.TabPane> */}
 					<Tabs.TabPane tab={<Icon name="cogs" />} key="node">
 						<NodeProperties onChange={onChange} selectedItem={selectedItem} canvasRef={canvasRef} />
 					</Tabs.TabPane>

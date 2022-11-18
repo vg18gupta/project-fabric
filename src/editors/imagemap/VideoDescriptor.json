@@ -49,5 +49,27 @@
 				"src": ""
 			}
 		}
+	],
+	"ELEMENT": [
+		
+		{
+			"name": "Video",
+			"description": "",
+			"type": "element",
+			"icon": {
+				"prefix": "fab",
+				"name": "youtube"
+			},
+			"option": {
+				"superType": "element",
+				"type": "video",
+				"width": 480,
+				"height": 270,
+				"name": "New video",
+				"autoplay": true,
+				"muted": true,
+				"loop": true
+			}
+		}
 	]
 }
