@@ -43,6 +43,10 @@ export default {
       title: "Style",
       component: StyleProperty,
     },
+    shadow: {
+      title: "Shadow",
+      component: ShadowProperty,
+    },
   },
   image: {
     general: {
