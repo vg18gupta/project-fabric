@@ -160,7 +160,6 @@ class ImageMapItems extends Component {
       this.handlers.onSVGModalVisible();
     },
     onDrawingItem: (item) => {
-      debugger;
       const { canvasRef } = this.props;
       if (canvasRef.handler.interactionMode === "polygon") {
         message.info("Already drawing");

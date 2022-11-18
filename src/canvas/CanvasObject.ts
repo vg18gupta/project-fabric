@@ -28,7 +28,7 @@ export interface CanvasObjectSchema {
 }
 
 export const createCanvasObject = (objectSchema: CanvasObjectSchema) => objectSchema;
-debugger
+
 const CanvasObject: CanvasObjectSchema = {
 	group: {
 		create: ({ objects, ...option }: { objects: FabricObject[] }) => new fabric.Group(objects, option),

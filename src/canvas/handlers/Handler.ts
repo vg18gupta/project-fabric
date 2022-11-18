@@ -745,7 +745,7 @@ class Handler implements HandlerOptions {
 		if (obj.superType === 'link') {
 			return this.linkHandler.create(newOption, loaded);
 		}
-		debugger
+		
 		let createdObj;
 		// Create canvas object
 		if (obj.type === 'image') {
